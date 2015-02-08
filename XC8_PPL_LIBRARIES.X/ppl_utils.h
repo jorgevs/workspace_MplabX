@@ -55,7 +55,7 @@ typedef int INT;
 typedef long LONG;
 
 // Convert BCD (Binary-Coded Decimal) to normal Decimal numbers
-uint8_t ppl_convertBCDToDec(uint8_t bcd_value);
+uint8_t ppl_bcdToDec(uint8_t bcd_value);
 
 // Convert normal Decimal numbers to BCD (Binary-Coded Decimal)
-uint8_t ppl_convertDecToBCD(uint8_t decimal_value);
+uint8_t ppl_decToBcd(uint8_t decimal_value);
