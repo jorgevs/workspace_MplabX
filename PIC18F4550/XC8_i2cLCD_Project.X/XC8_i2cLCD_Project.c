@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "../../XC8_PPL_LIBRARIES.X/ppl_utils.h"
 #include "../../XC8_PPL_LIBRARIES.X/ppl_i2clcd.h"
+#include "../../XC8_PPL_LIBRARIES.X/ppl_i2c.h"
 
 #define _XTAL_FREQ 4800000
 
@@ -13,7 +14,13 @@ void main(void) {
     TRISA = 0;
     PORTA = 0;
 
+    //--- INITIALISE THE I2C MODULE FOR MASTER MODE WITH 400KHz ---
+    ppl_i2c_init(MASTER, SLEW_ON);
+    //-------------------------------------------------------------
+
+    //--- INITIALISE THE i2cLCD MODULE ---
     ppl_i2clcd_init();
+    //------------------------------------
 
     ppl_i2clcd_putcmd(LCD_CLEAR, LCD_2CYCLE);  // LCD Clear
     ppl_i2clcd_putcmd(LCD_HOME, LCD_2CYCLE);   // LCD Home
@@ -40,7 +47,7 @@ void main(void) {
         ppl_delay_ms(2000);
 
         ppl_i2clcd_gotoxy(0,1);
-        ppl_i2clcd_puts("Hello:");
+        ppl_i2clcd_puts("Hello:");        
 
         ppl_i2clcd_gotoxy(7,1);
         ppl_i2clcd_putch(' ');

@@ -23,7 +23,7 @@
 #define LCD_LINE_TWO 0x40    // LCD RAM address for the second line
 
 #define PCA8574_ADDR 0x20
-#define SLAVE_ADDR (PCA8574_ADDR << 1)
+#define SLAVE_PCA8574_ADDR (PCA8574_ADDR << 1)
 
 
 void ppl_i2clcd_gotoxy(int x, int y);

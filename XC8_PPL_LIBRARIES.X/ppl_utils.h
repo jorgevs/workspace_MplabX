@@ -25,10 +25,6 @@ void delay_ms(unsigned int cnt);
 void ppl_delay(unsigned long x);
 
 
-
-
-
-
 #define TRUE  1
 #define FALSE 0
 

@@ -29,7 +29,7 @@ void ppl_i2clcd_writePCA8574(unsigned char value) {
 
     tempBuffer = SSPBUF; //read any previous stored content in buffer to clear buffer full status
     do {
-        status = WriteI2C(SLAVE_ADDR | I2C_WRITE_CMD); //write the I2C LCD address
+        status = WriteI2C(SLAVE_PCA8574_ADDR | I2C_WRITE_CMD); //write the I2C LCD address
         //check if bus collision happened
         if (status == -1) {
             tempBuffer = SSPBUF; //upon bus collision detection clear the buffer,
@@ -123,12 +123,6 @@ void ppl_i2clcd_puts(const char *s) {
  * Always has to be called before any other ppl_i2clcd function
  */
 void ppl_i2clcd_init() {
-    //---INITIALISE THE I2C MODULE FOR MASTER MODE WITH 400KHz ---
-    CloseI2C(); // Close I2C if was operating earlier
-    OpenI2C(MASTER, SLEW_ON);
-    SSPADD = 0x0A; //400kHz Baud clock(9) @8MHz
-    IdleI2C();
-
     // Initialization commands for Hitachi HD44780U LCD Display
     // Wait for more than 15 ms after VCC rises to 4.5 V
     __delay_ms(30); // Let LCD power up
