@@ -6,8 +6,12 @@
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
     #include <htc.h>        /* HiTech General Include File */
+#elif defined(__18CXX)
+    #include <p18cxxx.h>    /* C18 General Include File */
 #endif
 
+/******************************************************************************/
+/* Configuration Bits                                                         */
 
 // PIC18F4550 Configuration Bit Settings
 

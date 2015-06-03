@@ -1,13 +1,17 @@
 /******************************************************************************/
-/* Main Files to Include                                                      */
+/* Files to Include                                                           */
 /******************************************************************************/
 
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
     #include <htc.h>        /* HiTech General Include File */
+#elif defined(__18CXX)
+    #include <p18cxxx.h>    /* C18 General Include File */
 #endif
 
+/******************************************************************************/
+/* Configuration Bits                                                         */
 
 // PIC18F4550 Configuration Bit Settings
 
@@ -72,5 +76,4 @@
 
 // CONFIG7H
 #pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
-
 

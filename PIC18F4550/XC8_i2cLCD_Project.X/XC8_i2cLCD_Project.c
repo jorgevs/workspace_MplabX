@@ -3,7 +3,7 @@
 #include "../../XC8_PPL_LIBRARIES.X/ppl_i2clcd.h"
 #include "../../XC8_PPL_LIBRARIES.X/ppl_i2c.h"
 
-#define _XTAL_FREQ 4800000
+#define _XTAL_FREQ 48000000
 
 #define TRUE          1
 #define FALSE         0
@@ -27,11 +27,11 @@ void main(void) {
 
     ppl_i2clcd_putch('a');
 
-    ppl_delay(1000);
+    ppl_delay(100);
 
     ppl_i2clcd_puts("Initializing...");
 
-    ppl_delay(1000);
+    ppl_delay(100);
 
     ppl_i2clcd_putcmd(LCD_CLEAR, LCD_2CYCLE);  // LCD Clear
     ppl_i2clcd_putcmd(LCD_HOME, LCD_2CYCLE);   // LCD Home
@@ -42,9 +42,9 @@ void main(void) {
         ppl_i2clcd_puts(I2C_Send);
         
         PORTAbits.RA2 = 0;
-        ppl_delay_ms(2000);
+        ppl_delay_ms(200);
         PORTAbits.RA2 = 1;
-        ppl_delay_ms(2000);
+        ppl_delay_ms(200);
 
         ppl_i2clcd_gotoxy(0,1);
         ppl_i2clcd_puts("Hello:");        

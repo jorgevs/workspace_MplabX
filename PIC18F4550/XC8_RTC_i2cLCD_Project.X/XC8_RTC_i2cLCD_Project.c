@@ -4,7 +4,7 @@
 #include "../../XC8_PPL_LIBRARIES.X/ppl_ds3231.h"
 #include "../../XC8_PPL_LIBRARIES.X/ppl_i2c.h"
 
-#define _XTAL_FREQ 4800000
+#define _XTAL_FREQ 48000000
 
 
 unsigned char I2C_Send[21] = "RTC_i2cLCD";
@@ -86,9 +86,9 @@ void main(void) {
         ppl_i2clcd_puts(mkNumString(ppl_getTime(REG_SEC), 2, '0', 10));*/
 
         PORTAbits.RA2 = 0;
-        ppl_delay_ms(2000);
+        ppl_delay_ms(200);
         PORTAbits.RA2 = 1;
-        ppl_delay_ms(2000);
+        ppl_delay_ms(200);
 
         ppl_i2clcd_gotoxy(0, 1);
         ppl_i2clcd_puts("Hello...");
