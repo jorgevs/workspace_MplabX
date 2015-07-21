@@ -9,6 +9,7 @@
 #define FALSE         0
 
 unsigned char I2C_Send[21] = "LCD_I2C_PCA8574";
+char s[10];
 
 void main(void) {
     TRISA = 0;
@@ -49,10 +50,14 @@ void main(void) {
         ppl_i2clcd_gotoxy(0,1);
         ppl_i2clcd_puts("Hello:");        
 
-        ppl_i2clcd_gotoxy(7,1);
+        ppl_i2clcd_gotoxy(6,1);
         ppl_i2clcd_putch(' ');
         ppl_i2clcd_putch('J');
         ppl_i2clcd_putch('V');
         ppl_i2clcd_putch('S');
+        
+        ppl_i2clcd_gotoxy(12,1);
+        sprintf(s, "%d", 456);        
+        ppl_i2clcd_puts(s); 
     }
 }

@@ -17,6 +17,9 @@ void interrupt slower(void){
     //check if the interrupt is caused by the pin RB0    
     if(INTCON3bits.INT2F == 1){
         maxDelay = maxDelay - 25;
+        if(maxDelay < 0){
+            maxDelay = 200;
+        }        
         INTCON3bits.INT2F = 0;
     }
 }

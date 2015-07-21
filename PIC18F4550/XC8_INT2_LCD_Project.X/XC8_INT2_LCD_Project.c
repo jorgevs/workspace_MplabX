@@ -69,7 +69,7 @@ void main(void) {
 
        
     ppl_i2clcd_gotoxy(0,0);
-    ppl_i2clcd_puts("Keypad");        
+    ppl_i2clcd_puts("Int2 to LCD");        
         
     ppl_i2clcd_gotoxy(0,1);
     ppl_i2clcd_puts("maxDelay: ");
