@@ -1,5 +1,4 @@
 #include <xc.h>
-#include <stdio.h>
 #include <stdint.h>        /* For uint8_t definition */
 #include <stdbool.h>       /* For true/false definition */
 
@@ -12,18 +11,7 @@
 #define ppl_delay_ms(x) ppl_delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
 #define ppl_delay_us(x) ppl_delay((unsigned long)((x)*(_XTAL_FREQ/4000000.0)))
 
-
-
-// Simple Delay Function, you might adjust the value for different clock speed
-#define	delay_us(x) {unsigned char _dcnt; \
-		    _dcnt = (x)/(24000000UL/_XTAL_FREQ)|1; \
-		    while(--_dcnt != 0) continue; \
-                    }
-
-void delay_ms(unsigned int cnt);
-
 void ppl_delay(unsigned long x);
-
 
 #define TRUE  1
 #define FALSE 0
