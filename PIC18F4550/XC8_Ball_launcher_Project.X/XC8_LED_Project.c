@@ -18,17 +18,14 @@ void main(void) {
     PORTD = 0;
     
     PORTAbits.RA2 = 0;
-    PORTDbits.RD7 = 0;
+    PORTDbits.RD6 = 0;
     
     while(TRUE){
     
         if(PORTBbits.RB0){                        
             PORTAbits.RA2 = 1;            
-            PORTDbits.RD7 = 1;           
+            PORTDbits.RD6 = 1;           
             
-            ppl_delay_ms(250);
-            ppl_delay_ms(250);
-            ppl_delay_ms(250);
             ppl_delay_ms(250);
             ppl_delay_ms(250);
             ppl_delay_ms(250);
@@ -41,7 +38,7 @@ void main(void) {
             ppl_delay_ms(250);
             
             PORTAbits.RA2 = 0;
-            PORTDbits.RD7 = 0;
+            PORTDbits.RD6 = 0;
         }
     }
 }

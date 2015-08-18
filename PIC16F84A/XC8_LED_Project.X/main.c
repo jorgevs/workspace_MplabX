@@ -12,7 +12,7 @@
 /******************************************************************************/
 /* i.e. uint8_t <variable_name>; */
 
-void main(void){
+void main(void){    
     /* Configure the oscillator for the device */
     ConfigureOscillator();
 
@@ -21,8 +21,8 @@ void main(void){
 
     while(true){
         PORTAbits.RA3 = 0;
-        ppl_delay_ms(250);
+        ppl_delay_ms(100);
         PORTAbits.RA3 = 1;
-        ppl_delay_ms(250);
-    }
+        ppl_delay_ms(100);
+    }   
 }
