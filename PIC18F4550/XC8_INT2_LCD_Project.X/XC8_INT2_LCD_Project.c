@@ -2,6 +2,7 @@
 #include "../../XC8_PPL_LIBRARIES.X/ppl_utils.h"
 #include "../../XC8_PPL_LIBRARIES.X/ppl_i2clcd.h"
 #include "../../XC8_PPL_LIBRARIES.X/ppl_i2c.h"
+#include <stdio.h>
 
 #define _XTAL_FREQ 48000000
 
@@ -18,7 +19,7 @@ void interrupt slower(void){
     PORTAbits.RA1 = 1;
     ppl_delay_ms(maxDelay);
     
-    //check if the interrupt is caused by the pin RB0    
+    //check if the interrupt is caused by the pin RB2
     if(INTCON3bits.INT2F == 1){
         maxDelay = maxDelay - 25;
         if(maxDelay < 0){
@@ -32,15 +33,17 @@ void interrupt slower(void){
         
         ppl_i2clcd_gotoxy(10,1);
         sprintf(s, "%d", maxDelay);        
-        ppl_i2clcd_puts(s);        
+        ppl_i2clcd_puts(s);
     }
 }
 
+//NOTE:
+//This code is not working fine with the LCD integration: FIX IT!!!
 
 void main(void) {
-    TRISBbits.RB0 = 1; //set RB0 as Input
+    TRISBbits.RB2 = 1; //set RB2 as Input
 
-    INTCON3bits.INT2E = 1;   //enable Interrupt2 (RB0 as interrupt)    
+    INTCON3bits.INT2E = 1;   //enable Interrupt2 (RB2 as interrupt)    
     INTCON2bits.INTEDG0 = 1; //cause interrupt at raising edge
     INTCON3bits.INT2F = 0;   //reset interrupt flag
     INTCONbits. GIE = 1;     // Global interrupt enable
@@ -83,9 +86,9 @@ void main(void) {
     
     
     while(TRUE){                               
-        PORTAbits.RA2 = 0;
+        PORTAbits.RA3 = 0;
         ppl_delay_ms(maxDelay);
-        PORTAbits.RA2 = 1;
+        PORTAbits.RA3 = 1;
         ppl_delay_ms(maxDelay);        
     }
 }

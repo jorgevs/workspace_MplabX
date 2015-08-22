@@ -1,15 +1,7 @@
 /******************************************************************************/
-/* Files to Include                                                           */
+/* Main Files to Include                                                      */
 /******************************************************************************/
-
-#if defined(__XC)
-    #include <xc.h>         /* XC8 General Include File */
-#elif defined(HI_TECH_C)
-    #include <htc.h>        /* HiTech General Include File */
-#elif defined(__18CXX)
-    #include <p18cxxx.h>    /* C18 General Include File */
-#endif
-
+#include <xc.h>         /* XC8 General Include File */
 /******************************************************************************/
 /* Configuration Bits                                                         */
 
@@ -21,7 +13,7 @@
 #pragma config USBDIV = 2       // USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN = 1) (USB clock source comes from the 96 MHz PLL divided by 2)
 
 // CONFIG1H
-#pragma config FOSC = HSPLL_HS  // Oscillator Selection bits (HS oscillator, PLL enabled (HSPLL))
+#pragma config FOSC = INTOSC_EC // Oscillator Selection bits (Internal oscillator, CLKO function on RA6, EC used by USB (INTCKO))
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
 #pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
 
@@ -76,4 +68,3 @@
 
 // CONFIG7H
 #pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
-

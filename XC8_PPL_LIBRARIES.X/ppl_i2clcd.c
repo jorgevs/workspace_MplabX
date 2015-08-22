@@ -69,7 +69,7 @@ void ppl_i2clcd_putGeneric(unsigned char value, unsigned char numCycle, unsigned
     // Put the Upper 4 bits data
     lcdValue = (value & 0xF0) | LCD_BL | registerType;
     ppl_i2clcd_writePCA8574(lcdValue | LCD_EN);
-    __delay_us(2);
+    __delay_us(10);
 
     // Write Enable Pulse E: Hi -> Lo
     ppl_i2clcd_writePCA8574(lcdValue & ~LCD_EN);
@@ -82,7 +82,7 @@ void ppl_i2clcd_putGeneric(unsigned char value, unsigned char numCycle, unsigned
         // Put the Lower 4 bits data
         lcdValue = ((value << 4) & 0xF0) | LCD_BL | registerType;
         ppl_i2clcd_writePCA8574(lcdValue | LCD_EN);
-        __delay_us(2);
+        __delay_us(10);
 
         // Write Enable Pulse E: Hi -> Lo
         ppl_i2clcd_writePCA8574(lcdValue & ~LCD_EN);
