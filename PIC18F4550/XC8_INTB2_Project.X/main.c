@@ -4,7 +4,6 @@
 
 #include "system.h"    /* System funct/params, like osc/peripheral config */
 #include "user.h"      /* User funct/params, such as InitApp */
-
 #include "ppl_utils.h"
 
 /******************************************************************************/
