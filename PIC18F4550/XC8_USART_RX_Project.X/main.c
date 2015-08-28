@@ -7,41 +7,29 @@
 #include "ppl_utils.h"
 
 #include <usart.h>
+#include <xlcd.h>
 
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
-unsigned char Txdata[] = "MICROCHIP_USART";
+unsigned char RxData[10];
 
 void main(void){    
     /* Configure the oscillator for the device */
     ConfigureOscillator();
-
+    
     /* Initialize I/O and Peripherals for application */
     InitApp();
-        
-    //------USART Transmission ----
-    while(BusyUSART()); //Check if Usart is busy or not
-    putsUSART((char *)Txdata); //transmit the string    
-    putsUSART("\n\r");
-    
-    putcUSART('x');
-    putcUSART('\n');
-    putcUSART('a');
-    putsUSART("\n\r");
-    
-    putsUSART("test\n\r");
-       
-    bool ban = true;
+            
     while(true){
-        if(ban == true){
-            for(int i=0; i <10; i++){
-                while(BusyUSART()); //Check if Usart is busy or not
-                putsUSART("123456789\r\n"); //echo back the data recieved back to host
-                putsUSART("11111\r\n"); //echo back the data recieved back to host
-            }
-            ban = false;
-        }
+        while(BusyUSART()); //Check if Usart is busy or not
+        getsUSART(RxData, 9);
+        
+        SetDDRamAddr(0x00);             //shift cursor to beginning of first line
+        putrsXLCD("Hello World");       //Display "Hello World"
+        
+        SetDDRamAddr(0x40);             //shift cursor to beginning of second line
+        putrsXLCD((char*)RxData);      //Display the received string
     }        
     CloseUSART();
 }

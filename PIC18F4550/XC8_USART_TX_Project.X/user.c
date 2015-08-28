@@ -1,6 +1,5 @@
 #include <xc.h>         /* XC8 General Include File */
 #include "user.h"
-#include <usart.h>
 
 /******************************************************************************/
 /* User Functions                                                             */
@@ -14,7 +13,8 @@ void InitApp(void){
     /* Initialize peripherals */
     /* Configure the IPEN bit (1=on) in RCON to turn on/off int priorities */
     /* Enable interrupts */
-    init_USART();                    //Call the Initialize USART function    
+    
+    init_USART();                    //Call the Initialize USART function        
 }
 
 void init_USART(void){              //Initialize USART

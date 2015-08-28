@@ -49,3 +49,20 @@ uint8_t ppl_decToBcd(uint8_t decimal_value) {
   temp &= 0x78;
   return(temp + (temp >> 2) + (bcd_value & 0x0f));
 }*/
+
+  void DelayFor18TCY( void ){         //18 cycles delay
+    Nop( ); Nop( ); Nop( ); Nop( );
+    Nop( ); Nop( ); Nop( ); Nop( );
+    Nop( ); Nop( ); Nop( ); Nop( );
+    Nop( ); Nop( ); Nop( ); Nop( );
+    Nop( ); Nop( );
+    return;
+}
+
+void DelayPORXLCD (void){          // Delay of 15ms
+    Delay1KTCYx(30);
+}
+
+void DelayXLCD (void){            // Delay of 5ms
+    Delay1KTCYx(10);
+}
