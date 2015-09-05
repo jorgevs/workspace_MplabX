@@ -51,12 +51,13 @@ uint8_t ppl_decToBcd(uint8_t decimal_value) {
 }*/
 
   void DelayFor18TCY( void ){         //18 cycles delay
-    Nop( ); Nop( ); Nop( ); Nop( );
+    Delay10TCYx(20);
+    /*Nop( ); Nop( ); Nop( ); Nop( );
     Nop( ); Nop( ); Nop( ); Nop( );
     Nop( ); Nop( ); Nop( ); Nop( );
     Nop( ); Nop( ); Nop( ); Nop( );
     Nop( ); Nop( );
-    return;
+    return;*/
 }
 
 void DelayPORXLCD (void){          // Delay of 15ms

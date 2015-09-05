@@ -19,9 +19,9 @@ char s[10];
 char emptyString[10];
 
 void interrupt slower(void){
-    PORTAbits.RA1 = 0;
+    LATAbits.LA1 = 1;
     ppl_delay_ms(200);
-    PORTAbits.RA1 = 1;
+    LATAbits.LA1 = 0;
     ppl_delay_ms(200);
     
     //check if the interrupt is caused by the pin RB2
@@ -32,16 +32,19 @@ void interrupt slower(void){
         }        
         INTCON3bits.INT2F = 0;
   
-        // Clear display
-        WriteCmdXLCD(0x01);
-        // Shift cursor to beginning of first line
-        SetDDRamAddr(0x00);
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command            
+        WriteCmdXLCD(0x01);             // Clear display
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command            
+        SetDDRamAddr(0x00);             // Shift cursor to beginning of first line
         putrsXLCD("Int2 to XLCD");
 
-        // Shift cursor to beginning of second line
-        SetDDRamAddr(0x40);
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command                    
+        SetDDRamAddr(0x40);             // Shift cursor to beginning of second line
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command                    
         putrsXLCD("maxDelay: ");
-        sprintf(s, "%d", maxDelay);   
+        
+        sprintf(s, "%d", maxDelay);
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command                    
         putrsXLCD(s);
     }
 }
@@ -61,23 +64,28 @@ void main(void) {
     INTCONbits. GIE = 1;     // Global interrupt enable
     
 
-    // Clear display
-    WriteCmdXLCD(0x01);
-    // Shift cursor to beginning of first line
-    SetDDRamAddr(0x00);
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command    
+    WriteCmdXLCD(0x01);            // Clear display
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command    
+    SetDDRamAddr(0x00);             // Shift cursor to beginning of first line
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
     putrsXLCD("Int2 to XLCD");
 
-    // Shift cursor to beginning of second line
-    SetDDRamAddr(0x40);
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
+    SetDDRamAddr(0x40);            // Shift cursor to beginning of second line
+    
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
     putrsXLCD("maxDelay: ");
-    sprintf(s, "%d", maxDelay);   
+    
+    sprintf(s, "%d", maxDelay);
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
     putrsXLCD(s);
     
     
     while(TRUE){                               
-        PORTAbits.RA3 = 0;
+        LATAbits.LA3 = 1;
         ppl_delay_ms(maxDelay);
-        PORTAbits.RA3 = 1;
+        LATAbits.LA3 = 0;
         ppl_delay_ms(maxDelay);        
     }
 }

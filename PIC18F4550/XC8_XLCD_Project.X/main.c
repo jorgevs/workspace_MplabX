@@ -20,14 +20,17 @@ void main(void){
     /* Initialize I/O and Peripherals for application */
     InitApp();
 
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
     putrsXLCD("Hello World");          //Display "Hello World"
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
     SetDDRamAddr(0x40);            //shift cursor to beginning of second line
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
     putrsXLCD("LCD Display");      //Display "LCD display"
 
     while(true){
-        PORTAbits.RA3 = 0;
+        LATAbits.LA3 = 0;
         ppl_delay_ms(250);
-        PORTAbits.RA3 = 1;
+        LATAbits.LA3 = 1;
         ppl_delay_ms(250);
     }
 }
