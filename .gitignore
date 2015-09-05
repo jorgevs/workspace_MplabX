@@ -5,7 +5,6 @@ debug
 funclist
 .cvsignore
 .DS_Store
-Makefile
 l.obj
 *.STA
 *.cof
