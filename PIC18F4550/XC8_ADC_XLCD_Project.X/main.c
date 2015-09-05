@@ -39,17 +39,20 @@ void main(void){
         ADCResult /= 16;
         voltage = (ADCResult * 5.0) / 1024; // convert ADC count into voltage
         
-        
-        // Clear display
-        WriteCmdXLCD(0x01);
-        // Shift cursor to beginning of first line
-        SetDDRamAddr(0x00);
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command        
+        WriteCmdXLCD(0x01);             // Clear display
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command        
+        SetDDRamAddr(0x00);             // Shift cursor to beginning of first line
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
         putrsXLCD("ADC Project");
 
-        // Shift cursor to beginning of second line
-        SetDDRamAddr(0x40);
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command     
+        SetDDRamAddr(0x40);             // Shift cursor to beginning of second line
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
         putrsXLCD("voltage: ");
+        
         sprintf(s, "%f", voltage);
+        while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
         putrsXLCD(s);
         
         ppl_delay_ms(250);
