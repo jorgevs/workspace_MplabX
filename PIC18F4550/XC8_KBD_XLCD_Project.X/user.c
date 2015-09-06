@@ -4,6 +4,7 @@
 // The purpose of this library is to use the portD for the LCD instead of PortB 
 // as specified in the normal <xlcd.h> library
 #include "ppl_xlcd.h"
+#include "ppl_kbd.h"
 
 /******************************************************************************/
 /* User Functions                                                             */

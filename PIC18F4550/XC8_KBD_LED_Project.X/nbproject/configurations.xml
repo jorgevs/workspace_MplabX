@@ -42,6 +42,7 @@
         <linkerTool>
           <linkerLibItems>
             <linkerLibFileItem>../../XC8_PPL_LIBRARIES.X/ppl_utils.c</linkerLibFileItem>
+            <linkerLibFileItem>../../XC8_PPL_LIBRARIES.X/ppl_kbd.c</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>

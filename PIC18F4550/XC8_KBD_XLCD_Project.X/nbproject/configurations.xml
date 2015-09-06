@@ -47,6 +47,7 @@
           <linkerLibItems>
             <linkerLibFileItem>../../XC8_PPL_LIBRARIES.X/ppl_utils.c</linkerLibFileItem>
             <linkerLibFileItem>../../XC8_PPL_LIBRARIES.X/ppl_xlcd.c</linkerLibFileItem>
+            <linkerLibFileItem>../../XC8_PPL_LIBRARIES.X/ppl_kbd.c</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
@@ -136,6 +137,7 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

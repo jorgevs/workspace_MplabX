@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD2LCD_Project.X/user.c</file>
-            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD2LCD_Project.X/system.c</file>
-            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD2LCD_Project.X/main.c</file>
-            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD2LCD_Project.X/configuration_bits.c</file>
-            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD2LCD_Project.X/user.h</file>
-            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD2LCD_Project.X/system.h</file>
+            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD_XLCD_Project.X/main.c</file>
+            <file>file:/D:/workspace_MplabX/PIC18F4550/XC8_KBD_XLCD_Project.X/user.c</file>
         </group>
     </open-files>
 </project-private>
