@@ -8,6 +8,10 @@
 
 #include <stdio.h>
 
+// The purpose of this library is to use the portD for the LCD instead of PortB 
+// as specified in the normal <xlcd.h> library
+#include "ppl_xlcd.h"
+
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
@@ -23,7 +27,6 @@
 #define col3port PORTBbits.RB6
 //#define col4port PORTBbits.RB7   //if a 4x4 keypad is used
 
-unsigned char  const Seven_Segment_MAP[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
 char const keyPadMatrix[] =
 {
     '1','2','3',
@@ -32,11 +35,11 @@ char const keyPadMatrix[] =
     '*','0','#',
     0xFF
 };
-char key,old_key;
-char keypress,keyboard='0';
+char key, old_key;
+char keypress, keyboard='0';
 
-void kbd_init();
 int kbd_getc();
+void xlcdPrintCharacter(char character);
 
 void main(void){
     /* Configure the oscillator for the device */
@@ -45,45 +48,11 @@ void main(void){
     /* Initialize I/O and Peripherals for application */
     InitApp();    
     
-    kbd_init();
-
     while(TRUE){                               
         keypress = kbd_getc();
-
-        switch(keypress){
-            case '1': LATAbits.LA0 = 1;
-                      ppl_delay_ms(200);
-                      break;
-            case '2': LATAbits.LA1 = 1;
-                      ppl_delay_ms(200);
-                      break;
-            case '3': LATAbits.LA2 = 1;
-                      ppl_delay_ms(200);
-                      break;
-            case '4': LATAbits.LA3 = 1;
-                      ppl_delay_ms(200);
-                      break;
-            case '5': LATAbits.LA4 = 1;
-                      ppl_delay_ms(200);
-                      break;
-            case '6': LATAbits.LA5 = 1;
-                      ppl_delay_ms(200);
-                      break;
-            case '7': LATAbits.LA6 = 1;   //The oscillator config is FOSC = INTOSCIO_EC so that: Internal oscillator, port function on RA6, EC used by USB (INTIO)
-                      ppl_delay_ms(200);
-                      break;                              
-        }
-        LATA = 0;       
+        xlcdPrintCharacter(keypress);
+        ppl_delay_ms(200);
     }
-}
-
-void kbd_init(){
-    TRISB   = 0xF0;            //Use PORTB for Keypad
-    LATB    = 0x00;
-    PORTB   = 0x00;
-    
-    INTCON2bits.NOT_RBPU = 1;  // Pull-ups disabled
-    TRISA   = 0x00;            //Use PORTA to display
 }
 
 int kbd_getc(){
@@ -115,3 +84,17 @@ int kbd_getc(){
     }
 }
 
+void xlcdPrintCharacter(char character){
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command    
+    WriteCmdXLCD(0x01);            // Clear display
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command    
+    SetDDRamAddr(0x00);             // Shift cursor to beginning of first line
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
+    putrsXLCD("KEYBOARD 4X3");
+
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
+    SetDDRamAddr(0x40);            // Shift cursor to beginning of second line
+    
+    while(BusyXLCD());             //Check if the LCD controller is not busy before writing any command
+    putcXLCD(character);
+}
