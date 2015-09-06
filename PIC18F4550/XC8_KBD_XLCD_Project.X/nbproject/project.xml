@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>XC8_KBD2LCD_Project</name>
+            <name>XC8_KBD_XLCD_Project</name>
             <creation-uuid>75e8c880-ef10-4869-a3fe-d272f7cff7e3</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
