@@ -33,11 +33,10 @@ char const keyPadMatrix[] =
     0xFF
 };
 char key,old_key;
+char keypress,keyboard='0';
 
-//void init_IO(void);
 void kbd_init();
 int kbd_getc();
-
 
 void main(void){
     /* Configure the oscillator for the device */
@@ -46,50 +45,50 @@ void main(void){
     /* Initialize I/O and Peripherals for application */
     InitApp();    
     
-    char keypress,keyboard='0';
-
     kbd_init();
 
     while(TRUE){                               
         keypress = kbd_getc();
 
-        if(keypress == '1'){
-            LATAbits.LA0 = 1;
-            ppl_delay_ms(200);
-        } else if(keypress == '2'){
-            LATAbits.LA1 = 1;
-            ppl_delay_ms(200);
-        } else if(keypress == '3'){
-            LATAbits.LA2 = 1;
-            ppl_delay_ms(200);
-        } else if(keypress == '4'){
-            LATAbits.LA3 = 1;
-            ppl_delay_ms(200);
-        } else if(keypress == '5'){
-            LATAbits.LA4 = 1;
-            ppl_delay_ms(200);
-        } else if(keypress == '6'){
-            LATAbits.LA5 = 1;
-            ppl_delay_ms(200);
+        switch(keypress){
+            case '1': LATAbits.LA0 = 1;
+                      ppl_delay_ms(200);
+                      break;
+            case '2': LATAbits.LA1 = 1;
+                      ppl_delay_ms(200);
+                      break;
+            case '3': LATAbits.LA2 = 1;
+                      ppl_delay_ms(200);
+                      break;
+            case '4': LATAbits.LA3 = 1;
+                      ppl_delay_ms(200);
+                      break;
+            case '5': LATAbits.LA4 = 1;
+                      ppl_delay_ms(200);
+                      break;
+            case '6': LATAbits.LA5 = 1;
+                      ppl_delay_ms(200);
+                      break;
+            case '7': LATAbits.LA6 = 1;   //The oscillator config is FOSC = INTOSCIO_EC so that: Internal oscillator, port function on RA6, EC used by USB (INTIO)
+                      ppl_delay_ms(200);
+                      break;                              
         }
         LATA = 0;       
     }
 }
 
 void kbd_init(){
-    PORTB   = 0x00;
-    LATB    = 0x00;
     TRISB   = 0xF0;            //Use PORTB for Keypad
+    LATB    = 0x00;
+    PORTB   = 0x00;
+    
     INTCON2bits.NOT_RBPU = 1;  // Pull-ups disabled
     TRISA   = 0x00;            //Use PORTA to display
-    
 }
-int kbd_getc(){
-    // This routine returns the first key found to be pressed during the scan.
-    char key = 0, row;
 
-    for( row = 0b00000001; row < 0b00010000; row <<= 1 )
-    {
+int kbd_getc(){
+    char key = 0, row;
+    for( row = 0b00000001; row < 0b00010000; row <<= 1 ){
         {   // turn on row output
             row1port = (row & 0x0001)>>0;
             row2port = (row & 0x0002)>>1;
@@ -102,16 +101,17 @@ int kbd_getc(){
         if( col2port )break;  key++;
         if( col3port )break;  key++;
         //if( col4port )break;  key++;
-     }
+    }
     row1port = 0;
     row2port = 0;
     row3port = 0;
     row4port = 0;
-    if (key!=old_key){
-      old_key=key;
-      return keyPadMatrix[ key ];
+    
+    if (key != old_key){
+      old_key = key;
+      return keyPadMatrix[key];
+    }else{
+        return keyPadMatrix[ 0x0C ];
     }
-    else
-    return keyPadMatrix[ 0x0C ];
 }
 
