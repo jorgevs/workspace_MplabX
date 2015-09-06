@@ -18,7 +18,7 @@ int maxDelay = 200;
 char s[10];
 char emptyString[10];
 
-void interrupt slower(void){
+void interrupt checkButtonPressed(void){
     LATAbits.LA1 = 1;
     ppl_delay_ms(200);
     LATAbits.LA1 = 0;

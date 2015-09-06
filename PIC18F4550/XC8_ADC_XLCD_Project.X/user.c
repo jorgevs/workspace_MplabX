@@ -40,17 +40,17 @@ void init_ADC(void){
     /**** ADC configured for:
     * FOSC/2 as conversion clock
     * Result is right justified
-    * Aquisition time of 20 AD
+    * Aquisition time of 2 AD
     * Channel 0 for sampling
     * ADC interrupt on
     * ADC reference voltage from VDD & VSS
     */
-    config1 = ADC_FOSC_2 | ADC_RIGHT_JUST | ADC_2_TAD;
-    config2 = ADC_CH0 | ADC_INT_ON | ADC_REF_VDD_VSS;
-    portconfig = ADC_15ANA;
+    config1 = ADC_FOSC_2 & ADC_RIGHT_JUST & ADC_2_TAD;
+    config2 = ADC_CH0 & ADC_INT_ON & ADC_VREFPLUS_VDD & ADC_VREFMINUS_VSS;
+    portconfig = ADC_0ANA;
     
     //OpenADC(config1, config2, portconfig);
-    OpenADC(ADC_FOSC_2 & ADC_RIGHT_JUST & ADC_20_TAD, ADC_CH0 & ADC_INT_ON & ADC_VREFPLUS_VDD & ADC_VREFMINUS_VSS, ADC_0ANA);
+    OpenADC(config1, config2, portconfig);
     //---initialize the adc interrupt and enable them---
     ADC_INT_ENABLE();    
 }
