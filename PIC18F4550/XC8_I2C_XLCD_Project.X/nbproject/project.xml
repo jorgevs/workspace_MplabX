@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>XC8_RTC_i2cLCD_Project</name>
-            <creation-uuid>4fd31918-8b10-48e0-a287-c6dad289f11f</creation-uuid>
+            <name>XC8_I2C_XLCD_Project</name>
+            <creation-uuid>3057ee85-8a95-4611-8797-36537bd21339</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>

@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/XC8_RTC_i2cLCD_Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=XC8_RTC_i2cLCD_Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=xc8rtci2clcdproject.x/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/XC8_RTC_I2C_XLCD_Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=XC8_RTC_I2C_XLCD_Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=xc8rtci2cxlcdproject.x/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/xc8rtci2clcdproject.x/bin
+makeDirectory ${TMPDIR}/xc8rtci2cxlcdproject.x/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/xc8rtci2clcdproject.x.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/xc8rtci2cxlcdproject.x.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/xc8rtci2clcdproject.x.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/xc8rtci2cxlcdproject.x.tar *
 checkReturnCode
 
 # Cleanup

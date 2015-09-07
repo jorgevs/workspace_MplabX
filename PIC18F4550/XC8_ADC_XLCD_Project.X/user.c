@@ -31,7 +31,7 @@ void init_XLCD(void){              //Initialize LCD display
  }
 
 void init_ADC(void){
-    unsigned char channel=0x00, config1=0x00, config2=0x00, config3=0x00, portconfig=0x00;
+    unsigned char config1=0x00, config2=0x00, portconfig=0x00;
     
     //-- clear adc interrupt and turn off adc if in case was on prerviously---
     CloseADC();
