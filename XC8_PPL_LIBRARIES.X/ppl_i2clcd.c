@@ -135,9 +135,13 @@ void ppl_i2clcd_init() {
     ppl_i2clcd_putcmd(0x03 << 4, LCD_1CYCLE); // Write Nibble 0x03 three times (per HD44780U initialization spec)
     __delay_ms(10);
 
+
+
     // Function set: Set interface to be 4 bits long (only 1 cycle write).
     ppl_i2clcd_putcmd(0x02 << 4, LCD_1CYCLE); // Write Nibble 0x02 once - Set interface to be 4 bits long
     __delay_ms(10);
+
+
 
     // Function set: DL=0;Interface is 4 bits, N=1; 2 Lines, F=0; 5x8 dots font)
     ppl_i2clcd_putcmd(0x28, LCD_2CYCLE);
@@ -151,7 +155,7 @@ void ppl_i2clcd_init() {
     ppl_i2clcd_putcmd(LCD_CLEAR, LCD_2CYCLE); // Clear display
     __delay_ms(10);
 
-    // Entry Mode Set: I/D=1; Increament, S=0; No shift
+    // Entry Mode Set: I/D=1; Increment, S=0; No shift
     ppl_i2clcd_putcmd(0x06, LCD_2CYCLE); // Set cursor to increment
     __delay_ms(10);
 
