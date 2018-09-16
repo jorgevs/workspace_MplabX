@@ -5,6 +5,9 @@
 #include "system.h"    /* System funct/params, like osc/peripheral config */
 #include "user.h"      /* User funct/params, such as InitApp */
 
+#include <string.h> /* for memchr, NULL */
+#include <stdio.h> /* for printf */
+
 #include "ppl_utils.h"
 
 /******************************************************************************/
@@ -24,5 +27,8 @@ void main(void){
         ppl_delay_ms(250);
         PORTAbits.RA3 = 1;
         ppl_delay_ms(250);
-    }   
+        
+        char buf1[50] = "This is a test...";
+        printf("buf1 : %s\n\n", buf1);
+    }
 }
